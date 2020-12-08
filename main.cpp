@@ -382,17 +382,28 @@ int main(){
       }
 
       case 3: { // Working
-        string findCont_fname,findCont_lname;
-        cout << "Enter First Name of Contact: ";
-        cin >> findCont_fname;
-        cout << "Enter Last Name of Contact: ";
-        cin >> findCont_lname;
-        findCont_fname += findCont_lname;
-        contactBook.findByName(findCont_fname);
+        int ch;
+        cout << "\t1 - Search by Name\n\t2 - Search by Phone Number\nEnter your choice: ";
+        cin >> ch;
+        if(ch == 1) {
+          string findCont_name;
+          cout << "Enter Name of Contact: ";
+          cin >> findCont_name;
+          // cout << "Enter Last Name of Contact: ";
+          // cin >> findCont_lname;
+          // findCont_fname += findCont_lname;
+          contactBook.findByName(findCont_name);
+        }
+        else if(ch == 2) {
+          string findCont_pno;
+          cout << "Enter Phone Number of Contact: ";
+          cin >> findCont_pno;
+          contactBook.findByPhoneNumber(findCont_pno);
+        }
         break;
       }
 
-      case 4: {
+      case 4: { // Working
         string findCont_fname,findCont_lname, oldPno, newPno;
         cout << "Enter First Name of Contact: ";
         cin >> findCont_fname;
