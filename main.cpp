@@ -6,7 +6,7 @@ void printStars() {
 }
 
 void projCredits() {
-  cout << endl << "Project: CONTACT MANAGEMENT SYSTEM \n Made by:\n 1. Paras Aghija (191030) \n 2. Gautam Sachdeva(19103084) \n 3. Anurag Rai(19103065)" << endl;
+  cout << endl << "Project: CONTACT MANAGEMENT SYSTEM \n Made by:\n 1. Paras Aghija (19103074) \n 2. Gautam Sachdeva(19103084) \n 3. Anurag Rai(19103065)" << endl;
 }
 
 string upperToLower(string S) {
@@ -299,6 +299,10 @@ public:
     T2.find(w);
   }
 
+  void delete() {
+    
+  }
+
   void addPhoneNumber(string fname, string lname, string pno) {
     Contact *x = T.addPhoneNumber(fname, lname, pno);
     if(x != NULL){
@@ -313,34 +317,10 @@ public:
 
 
 // Driver Code
-int main(){
-
-  
-  // Trie t;
-  // Trie2 t2;
-
-  // t2.find("111111111");
-  // Contact *x = t.update("Paras", "Aghija", "0000000000");
-  // t2.update("111111111","0000000000", x);
-  // t.find("Paras");
-  // t2.find("111111111");
-
-  // y.findByName("Anurag");
-  // y.findByPhoneNumber("666666999999");
-  // y.findByPhoneNumber("99887766");
-
-  // y.update("Anurag", "Rai", "99887766", "0000000000");
-
-  // y.findByName("Anur");
-  // y.findByPhoneNumber("0000000000");
-
-  // y.addPhoneNumber("Anurag", "Rai", "9807075828");
-  // y.findByName("Anu");
-  // y.findByPhoneNumber("0000000000");
-
+int main() {
   ContactBook contactBook;
   contactBook.insert("Paras", "Aghija", "9999988888", "aghija.paras@gmail.com", "Delhi", "19 August");
-  contactBook.insert("Gautam", "Sachdeva", "7777788888", "sachdeva.gautam@gmail.com", "Allahabad", "23 June"); // Update DOB
+  contactBook.insert("Gautam", "Sachdeva", "7777788888", "sachdeva.gautam@gmail.com", "Allahabad", "23 June"); 
   contactBook.insert("Anurag", "Rai", "7777766666", "rai.anurag@gmail.com", "Varanasi", "9 August");
   contactBook.insert("Shaan", "Grover", "5555566666", "grover.shaan@gmail.com", "Delhi", "9 August");
 
