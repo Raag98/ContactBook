@@ -33,13 +33,13 @@ public:
     this->bday = bday;
   }
 
-  // string getfName() {
-  //   return fname;
-  // }
+  string getfName() {
+    return fname;
+  }
 
-  // string getlName() {
-  //   return lname;
-  // }
+  string getlName() {
+    return lname;
+  }
 
   // string geteMail() {
   //   return email;
@@ -188,6 +188,24 @@ public:
 
     return temp->person;
   }
+
+  void deleteContact(string w){
+    Node* temp = root;
+    w = upperToLower(w);
+    for(auto ch : w){
+      if(temp->children.count(ch) == 0) {
+        cout << "Contact Not Found" << endl;
+        return;
+      }
+      else 
+        temp = temp->children[ch];
+    }
+    if(temp->person != NULL){
+      Contact *t = temp->person;
+      temp->person = NULL;
+      delete t;
+    }
+  }  
 };
 
 
@@ -272,6 +290,29 @@ public:
   void update(string oldNo, string newNo, Contact *s){
       breakLink(oldNo);
       insert(newNo, s);
+   }
+
+   string deleteContact(string pno){
+      Node* temp = root;
+      string w;
+      for(auto ch : pno) {
+        if(temp->children.count(ch) == 0) {
+          cout << "Contact Not found" << endl;
+          return "none";
+        }
+        else{
+          temp = temp->children[ch];
+        }
+      }
+      if(temp->person != NULL){
+        w = temp->person->getfName() + temp->person->getlName();
+        temp->person = NULL;
+        return w;
+      }
+      else{
+        return "none";
+      }
+      
    }      
 };
 
@@ -299,10 +340,6 @@ public:
     T2.find(w);
   }
 
-  void delete() {
-    
-  }
-
   void addPhoneNumber(string fname, string lname, string pno) {
     Contact *x = T.addPhoneNumber(fname, lname, pno);
     if(x != NULL){
@@ -313,6 +350,14 @@ public:
   void printAllContacts(){
     T.printAllBelow(NULL);
   }
+
+  void deleteContact(string pno){
+    string w = T2.deleteContact(pno);
+    if(w != "none"){
+      T.deleteContact(w);
+    }
+    
+  }
 };
 
 
@@ -320,7 +365,7 @@ public:
 int main() {
   ContactBook contactBook;
   contactBook.insert("Paras", "Aghija", "9999988888", "aghija.paras@gmail.com", "Delhi", "19 August");
-  contactBook.insert("Gautam", "Sachdeva", "7777788888", "sachdeva.gautam@gmail.com", "Allahabad", "23 June"); 
+  contactBook.insert("Gautam", "Sachdeva", "7777788888", "sachdeva.gautam@gmail.com", "Prayagraj", "23 June"); 
   contactBook.insert("Anurag", "Rai", "7777766666", "rai.anurag@gmail.com", "Varanasi", "9 August");
   contactBook.insert("Shaan", "Grover", "5555566666", "grover.shaan@gmail.com", "Delhi", "9 August");
 
@@ -357,7 +402,9 @@ int main() {
       case 2: { // Contact Deletion
         string newPno;
         cin >> newPno;
-        contactBook.addPhoneNumber("Shaan", "Grover", newPno);
+        
+        contactBook.deleteContact(newPno);
+        contactBook.printAllContacts();
         break;
       }
 
