@@ -1,12 +1,17 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void printStars() {
-  cout << "***************************" << endl;
+void printStars(int n) {
+  for(int i = 0; i < n; i++)
+    cout << "*****";
+  cout << endl;
 }
 
 void projCredits() {
-  cout << endl << "Project: CONTACT MANAGEMENT SYSTEM \n Made by:\n 1. Paras Aghija (19103074) \n 2. Gautam Sachdeva(19103084) \n 3. Anurag Rai(19103065)" << endl;
+  cout << endl;
+  printStars(7);
+  cout << "Project: CONTACT MANAGEMENT SYSTEM \nMade by:\n\t1. Paras Aghija (19103074) \n\t2. Gautam Sachdeva(19103084) \n\t3. Anurag Rai(19103065)" << endl;
+  printStars(7);
 }
 
 string upperToLower(string S) {
@@ -41,31 +46,15 @@ public:
     return lname;
   }
 
-  // string geteMail() {
-  //   return email;
-  // }  
-
-  // string getaddress() {
-  //   return address;
-  // }
-
-  // string getbDay() {
-  //   return bday;
-  // }
-
   vector<string> getPNo() {
     return phone_numbers;
   }
 
-//  Updates Phone No.
+  //  Updates Phone No.
   void updatePNo(string old_pno, string new_pno) {
-    // if(phone_numbers.empty()) 
-    //   phone_numbers.push_back(S);
-    // else 
     auto it = find(phone_numbers.begin(), phone_numbers.end(), old_pno);
     *it = new_pno;
   }
-
   
   // Add another Phone No.
   void addPhone(string pno){
@@ -74,7 +63,7 @@ public:
 
   // Prints All Details
   void printDetails(){
-    cout << "Name : " << fname << " " << lname << endl;
+    cout << endl << "Name : " << fname << " " << lname << endl;
     cout << "Phone Number : ";
     for(auto pno : phone_numbers)
       cout << pno << ", ";
@@ -146,7 +135,7 @@ public:
     w = upperToLower(w);
     for(auto ch : w){
       if(temp->children.count(ch) == 0) {
-        cout << "Contact Not Found" << endl;
+        cout << endl << "# Contact Not Found #" << endl;
         return;
       }
       else 
@@ -163,7 +152,7 @@ public:
     Node* temp = root;
     for(auto ch : w){
       if(temp->children.count(ch) == 0) {
-        cout << "Contact Does not Exist" << endl;
+        cout << endl << "# Contact Does not Exist!! #" << endl;
         return NULL;
       }
       else temp = temp->children[ch];        
@@ -179,7 +168,7 @@ public:
     Node* temp = root;
     for(auto ch : w) {
       if(temp->children.count(ch) == 0){
-        cout << "Contact Does not Exist." << endl;
+        cout << endl << "# Contact Does not Exist!! #" << endl;
         return NULL;
       }
       else temp = temp->children[ch];        
@@ -194,7 +183,7 @@ public:
     w = upperToLower(w);
     for(auto ch : w){
       if(temp->children.count(ch) == 0) {
-        cout << "Contact Not Found" << endl;
+        cout << endl << "# Contact Not Found!! #" << endl;
         return;
       }
       else 
@@ -245,21 +234,26 @@ public:
         printAllBelow(pair.second);
     }
 
-    cout<<"No More Contacts exists." << endl;
+    cout << "# No More Contacts exists!! #" << endl;
+  }
+
+  void print(Node *root){
+    if(root->person)
+      root->person->printDetails();
   }
 
   void find(string w) {
     Node* temp = root;
     for(auto ch : w) {
       if(temp->children.count(ch) == 0) {
-        cout << "Contact Not found" << endl;
+        cout << endl << "# Contact Does Not Exits!! #" << endl;
         return;
       }
       else{
         temp = temp->children[ch];
       }
     }
-    printAllBelow(temp);
+    print(temp);
     // if(temp->person != NULL){
     //   temp->person->printDetails();
     // }
@@ -277,7 +271,7 @@ public:
     Node *temp = root;
     for(auto ch : w){
       if(temp->children.count(ch) == 0){
-        cout<<"Contact Not Found!!"<<endl;
+        cout<<"# Contact Not Found!! #"<<endl;
         return;
       }
       else{
@@ -292,26 +286,26 @@ public:
       insert(newNo, s);
    }
 
-   string deleteContact(string pno){
-      Node* temp = root;
-      string w;
-      for(auto ch : pno) {
-        if(temp->children.count(ch) == 0) {
-          cout << "Contact Not found" << endl;
-          return "none";
-        }
-        else{
-          temp = temp->children[ch];
-        }
-      }
-      if(temp->person != NULL){
-        w = temp->person->getfName() + temp->person->getlName();
-        temp->person = NULL;
-        return w;
-      }
-      else{
+  string deleteContact(string pno){
+    Node* temp = root;
+    string w;
+    for(auto ch : pno) {
+      if(temp->children.count(ch) == 0) {
+        cout << endl << "Contact Not Found" << endl;
         return "none";
       }
+      else {
+        temp = temp->children[ch];
+      }
+    }
+    if(temp->person != NULL) {
+      w = temp->person->getfName() + temp->person->getlName();
+      temp->person = NULL;
+      return w;
+    }
+    else {
+      return "none";
+    }
       
    }      
 };
@@ -363,67 +357,69 @@ public:
 
 // Driver Code
 int main() {
+
   ContactBook contactBook;
   contactBook.insert("Paras", "Aghija", "9999988888", "aghija.paras@gmail.com", "Delhi", "19 August");
   contactBook.insert("Gautam", "Sachdeva", "7777788888", "sachdeva.gautam@gmail.com", "Prayagraj", "23 June"); 
   contactBook.insert("Anurag", "Rai", "7777766666", "rai.anurag@gmail.com", "Varanasi", "9 August");
   contactBook.insert("Shaan", "Grover", "5555566666", "grover.shaan@gmail.com", "Delhi", "9 August");
 
-  printStars();
-  cout << " CONTACT MANAGEMENT SYSTEM" << endl;
-  printStars();
+  printStars(5);
+  cout << " \t\tPHONEBOOK " << endl;
+  printStars(5);
 
   while(1) {
     int opt;
-    cout << endl << "Features:\n 1 - Add Contact \n 2 - Delete Contact \n 3 - Search Contact \n 4 - Update Contact \n 5 - All Contacts \n 6 - Project Details \n 7 - Exit" << endl;
+    cout << endl << "=> Features:\n 1 - Add Contact \n 2 - Delete Contact \n 3 - Search Contact \n 4 - Update Contact \n 5 - All Contacts \n 6 - Project Details \n 7 - Exit" << endl;
     cout << "Enter your Choice: ";
-    cin >> opt; 
+    cin >> opt;
 
     switch(opt) {
       case 1: {
         string cont[6];
-        cout << "Enter First Name: ";
+        cout << endl << "\tEnter First Name: ";
         cin >> cont[0];
-        cout << "Enter Last Name: ";
+        cout << "\tEnter Last Name: ";
         cin >> cont[1];
-        cout << "Enter Phone Number: ";
+        cout << "\tEnter Phone Number: ";
         cin >> cont[2];
-        cout << "Enter E-Mail: ";
+        cout << "\tEnter E-Mail: ";
         cin >> cont[3];
-        cout << "Enter Address: ";
+        cout << "\tEnter Address: ";
         cin >> cont[4];
-        cout << "Enter First Name: ";
-        cin >> cont[5];
+        cout << "\tEnter Birthday: ";
+        cin.ignore();
+        getline(cin, cont[5]);
         contactBook.insert(cont[0], cont[1], cont[2], cont[3], cont[4], cont[5]);
-        cout << "Contact Created Successfully!";
+        cout << endl << "Contact Created Successfully!!" << endl;
         break; 
       }
 
       case 2: { // Contact Deletion
-        string newPno;
-        cin >> newPno;
+        string Pno;
+        cout << endl << "\tEnter the Phone Number of Contact: ";
+        cin >> Pno;
         
-        contactBook.deleteContact(newPno);
-        contactBook.printAllContacts();
+        contactBook.deleteContact(Pno);
+        cout << endl << "Contact deleted Successfully!" << endl;
+        // contactBook.printAllContacts();
         break;
       }
 
       case 3: { // Working
         int ch;
-        cout << "\t1 - Search by Name\n\t2 - Search by Phone Number\nEnter your choice: ";
+        cout << endl << "\t1 - Search by Name\n\t2 - Search by Phone Number\n\tEnter your choice: ";
         cin >> ch;
         if(ch == 1) {
           string findCont_name;
-          cout << "Enter Name of Contact: ";
+          cout << endl << "\tEnter Name of Contact: ";
           cin >> findCont_name;
-          // cout << "Enter Last Name of Contact: ";
-          // cin >> findCont_lname;
-          // findCont_fname += findCont_lname;
+          cout << endl;
           contactBook.findByName(findCont_name);
         }
         else if(ch == 2) {
           string findCont_pno;
-          cout << "Enter Phone Number of Contact: ";
+          cout << endl << "\tEnter Phone Number of Contact: ";
           cin >> findCont_pno;
           contactBook.findByPhoneNumber(findCont_pno);
         }
@@ -432,22 +428,18 @@ int main() {
 
       case 4: { // Working
         string findCont_fname,findCont_lname, oldPno, newPno;
-        cout << "Enter First Name of Contact: ";
+        cout << endl << "\tEnter First Name of Contact: ";
         cin >> findCont_fname;
-        cout << "Enter Last Name of Contact: ";
+        cout << "\tEnter Last Name of Contact: ";
         cin >> findCont_lname;
 
-        cout << "Enter Old Phone Number";
+        cout << "\tEnter Old Phone Number: ";
         cin >> oldPno;
-        cout << "Enter New Phone Number";
+        cout << "\tEnter New Phone Number: ";
         cin >> newPno;
-
-        contactBook.update(findCont_fname, findCont_lname, oldPno, newPno);
-
-        // findCont_fname += findCont_lname;        
-        cout << "Contact Updated Successfully!" << endl; 
-        contactBook.findByName(findCont_fname);
-
+        contactBook.update(findCont_fname, findCont_lname, oldPno, newPno);       
+        cout << endl << "Contact Updated Successfully!" << endl; 
+        // contactBook.findByName(findCont_fname);
         break;
       }
 
@@ -478,9 +470,3 @@ int main() {
 
   return 0;
 }
-
-/*
-
-TODO: Choice, 
-      Contact Delete,
-*/
