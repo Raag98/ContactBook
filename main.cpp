@@ -403,7 +403,7 @@ int main(){
 
   while(1) {
     int opt;
-    cout << endl << " 1 - Add Contact \n 2 - Delete Contact \n 3 - Search Contact \n 4 - Update Contact \n 5 - All Contacts \n 6 - Exit" << endl;
+    cout << endl << "Features:\n 1 - Add Contact \n 2 - Delete Contact \n 3 - Search Contact \n 4 - Update Contact \n 5 - All Contacts \n 6 - Exit" << endl;
     cout << "Enter your Choice: ";
     cin >> opt; 
 
@@ -432,15 +432,51 @@ int main(){
         break;
       }
 
-      case 3: {
-        string findQuery;
-        cin >> findQuery;
+      case 3: { // Working
+        string findCont_fname,findCont_lname;
+        cout << "Enter First Name of Contact: ";
+        cin >> findCont_fname;
+        cout << "Enter Last Name of Contact: ";
+        cin >> findCont_lname;
+        findCont_fname += findCont_lname;
+        contactBook.findByName(findCont_fname);
+        break;
+      }
+
+      case 4: {
+        string findCont_fname,findCont_lname, newPno;
+        cout << "Enter First Name of Contact: ";
+        cin >> findCont_fname;
+        cout << "Enter Last Name of Contact: ";
+        cin >> findCont_lname;
+        findCont_fname += findCont_lname;
+        cout << "Enter New Phone Number";
+        cin >> newPno;
         
         break;
       }
 
-    }
+      case 5: { // Working
+        contactBook.printAllContacts();
+        break;
+      }
 
+      case 6: { // Project Credits
+        // Group Members.
+        break;
+      }
+
+      case 7: { // Working
+        cout << "Thank You!!";
+        exit(0);
+        break;
+      }
+
+      default: {
+        cout << "Enter Valid Option";
+        break;
+      }
+    }
 
 
   }
