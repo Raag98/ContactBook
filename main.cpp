@@ -71,7 +71,7 @@ public:
     cout << "E-Mail : " << email << endl;
     cout << "Address : " << address << endl;
     cout << "Birthday : " << bday << endl;
-    cout << endl;
+    cout << endl; 
   }
 };
 
@@ -233,7 +233,6 @@ public:
       if(pair.second)
         printAllBelow(pair.second);
     }
-
     cout << "# No More Contacts exists!! #" << endl;
   }
 
@@ -253,7 +252,7 @@ public:
         temp = temp->children[ch];
       }
     }
-    print(temp);
+    printAllBelow(temp);
     // if(temp->person != NULL){
     //   temp->person->printDetails();
     // }
@@ -360,7 +359,7 @@ int main() {
 
   ContactBook contactBook;
   contactBook.insert("Paras", "Aghija", "9999988888", "aghija.paras@gmail.com", "Delhi", "19 August");
-  contactBook.insert("Gautam", "Sachdeva", "7777788888", "sachdeva.gautam@gmail.com", "Prayagraj", "23 June"); 
+  contactBook.insert("Gautam", "Sir", "7777788888", "sachdeva.gautam@gmail.com", "Prayagraj", "23 June"); 
   contactBook.insert("Anurag", "Rai", "7777766666", "rai.anurag@gmail.com", "Varanasi", "9 August");
   contactBook.insert("Shaan", "Grover", "5555566666", "grover.shaan@gmail.com", "Delhi", "9 August");
 
@@ -370,12 +369,12 @@ int main() {
 
   while(1) {
     int opt;
-    cout << endl << "=> Features:\n 1 - Add Contact \n 2 - Delete Contact \n 3 - Search Contact \n 4 - Update Contact \n 5 - All Contacts \n 6 - Project Details \n 7 - Exit" << endl;
+    cout << endl << "=> Features:\n 1 - Add Contact \n 2 - Add another Phone Number for a Contact \n 3 - Delete Contact \n 4 - Search Contact \n 5 - Update Contact \n 6 - All Contacts \n 7 - Project Details \n 8 - Exit" << endl;
     cout << "Enter your Choice: ";
     cin >> opt;
 
     switch(opt) {
-      case 1: {
+      case 1: { // Contact Addition
         string cont[6];
         cout << endl << "\tEnter First Name: ";
         cin >> cont[0];
@@ -395,7 +394,22 @@ int main() {
         break; 
       }
 
-      case 2: { // Contact Deletion
+      case 2: {
+        string findCont_fname,findCont_lname, newPno;
+        cout << endl << "\tEnter First Name of Contact: ";
+        cin >> findCont_fname;
+        cout << "\tEnter Last Name of Contact: ";
+        cin >> findCont_lname;
+
+        cout << "\tEnter another Phone Number: ";
+        cin >> newPno;
+
+        contactBook.addPhoneNumber(findCont_fname, findCont_lname, newPno);
+        cout << endl << "Phone Number added to Contact Successfully!" << endl;
+        break;
+      }
+
+      case 3: { // Contact Deletion
         string Pno;
         cout << endl << "\tEnter the Phone Number of Contact: ";
         cin >> Pno;
@@ -406,7 +420,7 @@ int main() {
         break;
       }
 
-      case 3: { // Working
+      case 4: { // Search Contact
         int ch;
         cout << endl << "\t1 - Search by Name\n\t2 - Search by Phone Number\n\tEnter your choice: ";
         cin >> ch;
@@ -426,7 +440,7 @@ int main() {
         break;
       }
 
-      case 4: { // Working
+      case 5: { // Contact Updation
         string findCont_fname,findCont_lname, oldPno, newPno;
         cout << endl << "\tEnter First Name of Contact: ";
         cin >> findCont_fname;
@@ -443,18 +457,18 @@ int main() {
         break;
       }
 
-      case 5: { // Working
+      case 6: { // Display All Contacts
         contactBook.printAllContacts();
         break;
       }
 
-      case 6: { // Working
+      case 7: { // Creds
         projCredits();
         break;
       }
 
-      case 7: { // Working
-        cout << "Thank You!!";
+      case 8: { // Exit Function
+        cout << endl << "Thank You!!" << endl;
         exit(0);
         break;
       }
@@ -464,9 +478,6 @@ int main() {
         break;
       }
     }
-
-
   }
-
   return 0;
 }
